@@ -5,15 +5,15 @@ const FavoritePage = () => {
 
   let [res_list, setList] = useState([])
     
-    useEffect(() => {
-    getFavorites()
-    }, [])
-
-    const getFavorites = async () => {
-        let response = await axios.get("http://localhost:8000/api/favorites/")
-        setList(response.data)
-        console.log(response.data)
-    }
+  useEffect(() => {
+  getFavorites()
+  }, [])
+  
+  const getFavorites = async () => {
+      let response = await axios.get("http://localhost:8000/api/favorites/")
+      setList(response.data)
+      console.log(response.data)
+  }
   return (
     <div>
         <h1>Favorite Page</h1>
