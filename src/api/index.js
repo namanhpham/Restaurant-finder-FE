@@ -2,9 +2,25 @@ import axios from "axios";
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
 
+const rapidapiURL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary';
 
-const client = axios.create({
-  baseURL: 'http://localhost:8000'
-});
+export const getRestaurantList = async (sw, ne) => {
+    try {
+        const { data: { data } } = await axios.get(rapidapiURL, {
+          params: {
+            bl_latitude: sw.lat,
+            tr_latitude: ne.lat,
+            bl_longitude: sw.lng,
+            tr_longitude: ne.lng,
+            },
+            headers: {
+              'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_KEY,
+              'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+            }
+        });
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}

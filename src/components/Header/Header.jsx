@@ -5,7 +5,6 @@ import axios from 'axios';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
 
 const client = axios.create({
   baseURL: 'http://localhost:8000',
@@ -17,7 +16,7 @@ const Header = () => {
   const handleLogout = async () => {
     navigate('/login')
     localStorage.removeItem('token');
-    const response = await client.get('/api/logout/');
+    const response = await client.get('/api/logout/', {withCredentials: true});
     console.log(response);
     updateUser(null);
   };
@@ -31,7 +30,7 @@ const Header = () => {
       <div className="container mx-auto grid grid-cols-3 items-center">
         {/* Left Column */}
         <div className="col-span-2 flex items-center">
-          <div className="text-black text-2xl font-semibold">My Restaurant</div>
+          <div className="text-red-700 text-2xl font-semibold font-mooli">Restaurant Finder</div>
           {/* Search bar here */}
           <div className="ml-4 flex items-center space-x-2">
             <input

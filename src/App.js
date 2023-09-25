@@ -5,9 +5,10 @@ import MainPage from './pages/MainPage';
 import { AuthProvider } from './contexts/AuthContext';
 
 // eslint-disable-next-line
-import { BrowserRouter as Router, Routes, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+
   return (
     <Router>
       <AuthProvider>

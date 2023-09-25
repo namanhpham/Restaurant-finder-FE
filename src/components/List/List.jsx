@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import PlaceDetail from '../PlaceDetails/PlaceDetail';
-const List = () => {
-  // Define your restaurant data (for demonstration purposes)
-  const restaurants = [
-    { name: 'Bistro Deluxe', rating: 4.754 },
-    { name: 'Cafe Riviera', rating: 3.256 },
-    { name: 'Gourmet Kitchen', rating: 5 },
-    { name: 'Sushi Delight', rating: 4.213 },
-    { name: 'Steakhouse Grill', rating: 5 },
-  ];
 
+const List = ({ restaurants }) => {
   // State to track the selected rating
   const [selectedRating, setSelectedRating] = useState('');
 
@@ -31,7 +23,7 @@ const List = () => {
   return (
     <div className="p-4 bg-white rounded-lg shadow-lg">
       <h1 className="text-3xl font-semibold text-gray-800 mb-4">Restaurant List</h1>
-      <div className="mb-4">
+      <div className="mb-4 flex justify-end justify-between ">
         <label htmlFor="ratingSelect" className="block text-gray-700 font-bold mb-2">
           Select Rating:
         </label>
@@ -49,19 +41,21 @@ const List = () => {
           <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
         </select>
       </div>
-      <div>
-        {/* Display the filtered restaurants */}
-        <h2 className="text-xl font-semibold text-gray-800 mb-2">Filtered Restaurants:</h2>
-        <ul className="list-disc pl-6">
-          {filteredRestaurants.map((restaurant, index) => (
-            <li
-              key={index}
-              className="text-gray-700 mb-2 flex items-center"
-            >
-              <PlaceDetail place={restaurant}/>
-            </li>
-          ))}
-        </ul>
+      <div style={{ height: '100vh' }} className="overflow-y-auto">
+        <div>
+          {/* Display the filtered restaurants */}
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">Filtered Restaurants:</h2>
+          <ul className="list-disc">
+            {filteredRestaurants.map((restaurant, index) => (
+              <li
+                key={index}
+                className="text-gray-700 mb-2 flex shadow-md items-center"
+              >
+                <PlaceDetail place={restaurant} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

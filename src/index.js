@@ -5,11 +5,11 @@ import { AuthProvider } from './contexts/AuthContext';
 import './index.css';
 
 ReactDOM.render(
-  <AuthProvider>
-    <React.StrictMode>
-      <App/>
-    </React.StrictMode>
-  </AuthProvider>,
+    <AuthProvider>
+      <React.StrictMode>
+        <App/>
+      </React.StrictMode>
+    </AuthProvider>,
   document.getElementById('root')
 );
 

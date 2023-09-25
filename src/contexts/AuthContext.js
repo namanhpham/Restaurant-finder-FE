@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const getcurrentUser = async () => {
     try {
-      const response = await axios.get('http://localhost:8000//api/user');
+      const response = await axios.get('http://localhost:8000//api/user', {withCredentials: true});
       setCurrentUser(response.data);
     } catch (err) {
       setCurrentUser(null);

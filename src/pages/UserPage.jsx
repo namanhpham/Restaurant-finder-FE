@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
 
 
 const client = axios.create({
@@ -13,6 +12,7 @@ const client = axios.create({
 });
 
 const UserPage = () => {
+
   const navigate = useNavigate();
   const { currentUser, updateUser } = useAuth()
   const [username, setUsername] = useState('');
@@ -41,7 +41,7 @@ const UserPage = () => {
   const handleLogout = async () => {
     navigate('/login')
     localStorage.removeItem('token');
-    const response = await client.get('/api/logout/');
+    const response = await client.get('/api/logout/', {withCredentials: true});
     console.log(response);
     updateUser(null);
   };
